@@ -21,13 +21,15 @@ df.columns = headers
 Exporting data with pandas:
 We can preserve progresses anytime by saving modified dataset using:
 path="defined_path_with_file_name"
-df.to_scv(path)
+df.to_scv(path, index=False) -> index=False means, that row names will not be written
 
 Pandas also supports other formats than csv:
 csv     pd.read_csv()   df.to_csv()
 json   pd.read_json()   df.to_json()
 Excel  pd.read_excel() df.to_excel()
 sql     pd.read_sql()   df.to_sql()
+hdf     pd.read_hdf()   df.to_hdf()
+...
 
 Data types:
 - Pandas Type -                 Native Python Type -                            Description
@@ -60,7 +62,15 @@ We also get additional set of data:
     - freq - number of times the top object appears in the column
     NaN - not a number
 
+df.replace(v1, v1) - replaces value 1 with value 2 in dataframe
+df.dropna() - removes the missing values
 df.info() - provides a concise summary of the DataFrame - column names and data types
+df.columns - a list of headers
+
+We can select the columns of a dataframe by indicating the name of each column. For example, you can select the three columns as follows:
+dataframe[[' column 1 ',column 2', 'column 3']]
+Where "column" is the name of the column, we can apply the method ".describe()" to get the statistics of those columns as follows:
+dataframe[[' column 1 ',column 2', 'column 3'] ].describe()
 
 Accessing Databases with Python:
 User <--> Python Programs <-API calls-> DBMS
