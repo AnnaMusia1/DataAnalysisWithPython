@@ -60,4 +60,44 @@ We also get additional set of data:
     - freq - number of times the top object appears in the column
     NaN - not a number
 
-df.info() - provides a concise summary of the DataFrame
+df.info() - provides a concise summary of the DataFrame - column names and data types
+
+Accessing Databases with Python:
+User <--> Python Programs <-API calls-> DBMS
+The Python code connects to the database, using API calls.
+
+1. Application program --CONNECT(db, user, pswd)--> DBMS
+2. Application program --SEND("update....")-------> DBMS
+3. Application program --EXECUTE()----------------> DBMS
+4. Application program --STATUS_CHECK()-----------> DBMS
+5. Application program <-OK------------------------ DBMS
+6. Application program --DISCONNET()--------------> DBMS
+
+An application programming interface is a set of functions that we can call to get access to some type of service.
+The SQL API consists of library function calls as an application programming interface, API, for the DBMS.
+To pass SQL statements to the DBMS, an application program calls functions in the API, and it calls other functions to
+retrieve query results and status information from the DBMS:
+1. The application program begins its database access with one or more API calls that connect the program to the DBMS.
+2. To send the SQL statement to the DBMS, the program builds the statement as a text string in a buffer
+3. and then makes an API call to pass the buffer contents to the DBMS.
+4./5. The application program makes API calls to check the status of its DBMS request and to handle errors.
+6. The application program ends its database access with an API call that disconnects it from the database
+
+What is a DB-API?
+DB-API is Python's standard API for accessing relational databases.
+It's a standard, that allows us to write a single program that works with multiple kinds of relational databases
+instead of writing a separate program for each one.
+
+Two main concepts of the Python DB-APi:
+1. Connection objects
+    - Database connections
+    - Manage transactions
+2. Query objects
+    - Cursor objects are used to run queries and fetch results
+        We open a cursor object and then run queries. Cursors are used to scan through the results of a database.
+
+What are Connection method? Method used with Connection objects:
+.cursor() - returns a new cursor object using the connection
+.commit() - commits any pending transaction to the database
+.rollback() - causes the database to roll back to the start of any pending transaction
+.close() - closes a database connection
