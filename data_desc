@@ -5,3 +5,27 @@ Reading data in pandas can be done quickly in three lines:
 1. import pandas
 2. define a variable with a file path
 3. usa the .read_CSV() method to import data
+
+The .read_csv() method assumes the data contains a header.
+
+After a reading a dataset, it's good idea to look at the data frame. We could print it, or just print the headers.
+df.head(n) - to show the first n rows of data frame
+df.tail(n) - to show the bottom n rows of data frame
+
+Pandas automatically set the column header as a list of integers, if the headers were set to None
+In order to replace the column names with something more meaningful, we need to have a list wih the headers,
+and then assign df columns to this list.
+headers = []
+df.columns = headers
+
+Exporting data with pandas:
+We can preserve progresses anytime by saving modified dataset using:
+path="defined_path_with_file_name"
+df.to_scv(path)
+
+Pandas also supports other formats than csv:
+csv     pd.read_csv()   df.to_csv()
+json   pd.read_json()   df.to_json()
+Excel  pd.read_excel() df.to_excel()
+sql     pd.read_sql()   df.to_sql()
+
