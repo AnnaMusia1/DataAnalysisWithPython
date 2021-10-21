@@ -29,3 +29,35 @@ json   pd.read_json()   df.to_json()
 Excel  pd.read_excel() df.to_excel()
 sql     pd.read_sql()   df.to_sql()
 
+Data types:
+- Pandas Type -                 Native Python Type -                            Description
+- object -                      string -                                        numbers and strings
+- int64 -                       int -                                           numeric characters
+- float64 -                     float -                                         numeric characters with decimals
+- datetime64, timedelta[ns] - /datetime module in Python's standard library/ - time data
+
+Why check data types?
+- potential info and type mismatch
+- compatibility with python methods
+
+df.dtypes() - is used to check data types
+
+df.describe() - returns a statistical summary
+    - count- number of terms
+    - mean - average value
+    - std - standard deviation
+    - min - min value
+    - 25% - boundary of each quartiles
+    - 50% -
+    - 75% -
+    - max - max value
+By default the method skips rows and columns, that don't contain numbers. But it's possible to make the .describe() method
+worked for object type as well. Then we need do add an argument to the describe() method:
+df.describe(include=all)
+We also get additional set of data:
+    - unique - number of distinct objects in column
+    - top - most frequently occurring object
+    - freq - number of times the top object appears in the column
+    NaN - not a number
+
+df.info() - provides a concise summary of the DataFrame

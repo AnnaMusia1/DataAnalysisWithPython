@@ -17,3 +17,9 @@ print(df.head(3))
 
 path = "C:/Users/a.musial/IdeaProjects/DataAnalysisWithPython/automobile.csv"
 df.to_csv(path)
+
+print(df.dtypes)
+
+print(df.describe(include="all"))
+
+print(df.info())
