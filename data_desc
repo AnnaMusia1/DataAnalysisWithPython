@@ -111,3 +111,82 @@ What are Connection method? Method used with Connection objects:
 .commit() - commits any pending transaction to the database
 .rollback() - causes the database to roll back to the start of any pending transaction
 .close() - closes a database connection
+
+Data Pre-processing (also known as data cleaning or data wrangling)
+It's a process of converting or mapping data from initial "raw" form into another format, in order to prepare the data
+for further analysis.
+
+In Python, we usually perform operations along columns.
+Each row of the column represents a sample.
+We access a column by specifying the name of the column, i.e.:
+df["symboling"]
+df["body-style"]
+
+We can add a value to each entry of a column, i.e to add one to each "symboling" entry:
+df["symboling"] = df["symboling"] + 1
+
+Dealing with missing values in Python
+Missing value - when no data value is stored for a variable (feature) in an observation.
+Could be represented as:
+- ?
+- N/A
+- 0
+- just blank cell
+
+How to deal with missing data?
+- check with the data collection sources
+- drop the missing values:
+    - drop the variable
+    - drop the data entry
+- replace the missing values (with a guess of what the data should be)
+    - replace it with an average (of similar datapoints)
+    - replace it by frequency
+    - replace it based on other functions
+- leave it as missing data
+
+
+How to drop missing values in Python:
+dataframe.dropna() - is used to drop rows or columns that contain missing values like NaN
+    we need do specify axis:
+    axis=0 -> drops the entire row
+    axis=1 -> drops the entire column   that contains the missing values
+
+i.e.: in order to drop the cars, for which there is no data in "price" column:
+
+df.dropna(subset=["price"], axis=0, inplace=True)
+Setting the argument inplace to True, allows the modification to be done on the data set directly -> writes the result back into the dataframe
+
+df.dropna(subset=["price"], axis=0)
+This line of code doesn't change the data frame, but it is a good way to make sure that we perform the correct operation.
+
+Documentation:
+http://pandas.pydata.org/
+
+
+How to replace missing values in Python:
+dataframe.replace()
+dataframe.replace(missing_value, new_value)
+
+Assuming, that we want to replace the missing value of the variable "normalized-losses" by the mean value of the variable:
+1. Calculate the mean of the column:
+    mean = df["normalises-losses"].mean()
+2. Use the method .replace()
+    df["normalises-losses"].replace(/np. nan/, mean)
+
+
+
+Data formatting in Python:
+Data formatting means bringing data into a common standard of expression, in order to allow users to make meaningful comparison.
+
+Applying calculations to an entire column:
+- for example: convert units from "mpg" (miles per gallon) to "l/100km" in the column "city-mpg"
+    df["city-mpg"] = 237 / df["city-mpg"]
+    and rename the column:
+    df.rename(columns=("city-mpg": "city-l/100km"), inplace=True)
+
+Incorrect data types:
+dataframe.dtypes() - to identify data type:
+dataframe.astype() - to convert data type:
+    for example: convert data type to integer in column "price"
+    df["price"] = df["price"].astype("int")
+
