@@ -242,3 +242,28 @@ We would like 3 bins of equal bin width,so we need 4 numbers as dividers, that a
 3. we use the pandas function .cut() to segment and sort the data values into bins.
     df["price-binned"] = pd.cut(df["price"], bins, labels=group_names, include_lowest=True)
 4. We can then use histograms to visualize the distribution of the data after they've been divided into bins
+
+
+Turning categorical variables into quantitative variables in Python
+Problem: Most statistical models cannot take in the objects / strings as input and for model training
+only take the numbers as inputs.
+
+In the car dataset the fuel type feature as a categorical variable has two values: "gas" and "diesel", which are strings.
+For further analysis, we has to convert these variables into some form of numeric format.
+Solution:
+One-hot encoding
+- add dummy variables for each unique category
+- assign 0 or 1 in each category
+car     Fuel    ....    gas     diesel
+A       Gas     ....    1       0
+B       Diesel  ....    0       1
+C       Gas     ....    1       0
+D       Gas     ....    1       0
+
+Dummy variables in Python pandas
+in Pandas, we can use .get_dummies() method:
+- pandas.get_dummies() method
+- convert categorical variables to dummy variables (0 or 1)
+pd.get_dummies(df["fuel"])
+-> the method takes the "fuel" type column and creates the dataframe dummy_variable_1
+-> it automatically generates a list of numbers, each one corresponding to a particular category of the variable
