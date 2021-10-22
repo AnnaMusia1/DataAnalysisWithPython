@@ -125,6 +125,9 @@ df["body-style"]
 We can add a value to each entry of a column, i.e to add one to each "symboling" entry:
 df["symboling"] = df["symboling"] + 1
 
+
+Data Wrangling is the process of converting data from the initial format to a format that may be better for analysis.
+
 Dealing with missing values in Python
 Missing value - when no data value is stored for a variable (feature) in an observation.
 Could be represented as:
@@ -132,6 +135,22 @@ Could be represented as:
 - N/A
 - 0
 - just blank cell
+
+In order to input an missing value:
+import numpy as np
+np.nan - means an empty value
+
+There are two methods to detect missing data:
+.isnull()
+.notnull()
+The output is a boolean value indicating whether the value that is passed into the argument is in fact missing data.
+Then we use .value_counts() method to calculate how many times the "False" and "True" values occur.
+
+We can also use it to other columns:
+df['num-of-doors'].value_counts()
+
+We can also use the .idxmax() method to calculate for us the most common type automatically:
+df['num-of-doors'].value_counts().idxmax()
 
 How to deal with missing data?
 - check with the data collection sources
@@ -171,8 +190,7 @@ Assuming, that we want to replace the missing value of the variable "normalized-
 1. Calculate the mean of the column:
     mean = df["normalises-losses"].mean()
 2. Use the method .replace()
-    df["normalises-losses"].replace(/np. nan/, mean)
-
+    df["normalises-losses"].replace(np.nan, mean)
 
 
 Data formatting in Python:
