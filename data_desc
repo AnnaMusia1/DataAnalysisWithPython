@@ -190,3 +190,36 @@ dataframe.astype() - to convert data type:
     for example: convert data type to integer in column "price"
     df["price"] = df["price"].astype("int")
 
+Data Normalisation in Python:
+data normalization: uniform the features value with different range.
+By making the ranges consistent between variables, normalization enables a fair comparison between the different features, making sure they have the same impact.
+Normalized data:
+- similar range value
+- similar intrinsic influence on analytical model
+
+There are several ways to normalize data:
+1. Simple feature scaling:
+    Xnew = Xold/Xmax:                   this makes the new values range between 0 and 1
+2. Min-Max:
+    Xnew = (Xold-Xmin)/(Xmax-X-min)     this makes the new values range between 0 and 1
+3. Z-score (or standard score):
+    Xnew = (Xold - μ)/σ                 typically range between -3 and 3 (but can be higher or lower)
+    μ - average of the feature
+    σ - standard deviation
+
+Normalization of the "length" value:
+    Simple feature scaling in Python:
+df["length"] = df["lenght"] / df["length"].max()
+
+    Min-max in Python:
+df["length"] = (df["length"] - df["length"].min()) /
+                (df["length"].max() - df["length"].min())
+
+    Z-score in Python:
+df["length"] = (df["length"] - df["length"].mean()) /
+                df["length"].std()
+
+.min() - returns minimal value of the feature in the dataset
+.max() - returns maximal value
+.mean() - returns average value
+.std() - returns standard deviation
